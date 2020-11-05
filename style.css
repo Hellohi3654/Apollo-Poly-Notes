@@ -1,0 +1,45 @@
+body {
+  overflow: hidden; 
+}
+h4 {
+  text-align: center;
+  color: red;
+  display: none;
+}
+
+.photo {
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+img {
+  display: block;
+  margin: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: auto;
+}
+
+
+
+input {
+  position: absolute;
+  top: 10px;
+  right: 1vw;
+  width: 12vw;
+  color: rgb(0, 0, 0);
+}
+
+.help {
+  display: none;
+  position: absolute;
+  top: 66px;
+  right: 1vw;
+  width: 12vw;
+  color: grey;
+}
+
+p {
+  margin: 10px 0;
+}
