@@ -1,20 +1,15 @@
 var apiKey = "28dc847dcca68c07d01a2d56c6567665";
-var defaultAlbum = "72157658601662068";
-var getDefaultUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=" + defaultAlbum + "&format=json&nojsoncallback=1";
+var defaultAlbum = "136485307@N06";
+var pog = Math.floor((Math.random() * 160) + 1);
+var getDefaultUrl = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&per_page=100&api_key=" + apiKey + "&user_id=" + defaultAlbum + "&page=" + pog + "&format=json&nojsoncallback=1";
 var getSetUrl = getDefaultUrl;
+
 
 $(document).ready(function() {
   var albumNumberFromChrome = null;
   getAlbumNumberAndUpdatePhoto();
 
-  chrome.storage.onChanged.addListener(function(response, namespace) {
-    getAlbumNumberAndUpdatePhoto();
-  });
-
-  $('[name=album_number]').bind('input', function() {
-    chrome.storage.sync.set({ 'albumNumber': $(this).val() }, function(){
-    });
-  });
+  
 
   setInterval(function () {
     updatePhoto(getSetUrl);
@@ -29,6 +24,8 @@ $(document).ready(function() {
   });
 });
 
+
+
 function updatePhoto(setUrl) {
   $.get(setUrl)
     .success(function(data) {
@@ -38,7 +35,7 @@ function updatePhoto(setUrl) {
         updatePhoto(getSetUrl);
       } else {
         if (setUrl !== getDefaultUrl) { $('h4').hide(); }
-        var photos = data.photoset.photo;
+        var photos = data.photos.photo;
         var randomPhoto = selectRandomPhoto(photos);
         replacePhoto(randomPhoto.id);
       }
@@ -81,9 +78,8 @@ function getAlbumNumberAndUpdatePhoto() {
     albumNumberFromChrome = response['albumNumber'];
     if (albumNumberFromChrome) {
       $('[name=album_number]').val(albumNumberFromChrome);
-      getSetUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=" + albumNumberFromChrome + "&format=json&nojsoncallback=1";
-    } else {
       getSetUrl = getDefaultUrl;
+   
     }
     updatePhoto(getSetUrl);
   });
