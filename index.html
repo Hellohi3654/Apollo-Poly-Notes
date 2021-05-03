@@ -28,7 +28,6 @@
          text-decoration: none;
          display: inline-block;
          font-size: 24px;
-		 font-weight: bold;
          margin: 4px 2px;
          cursor: pointer;
 		 z-index: 2;
@@ -51,7 +50,6 @@
          text-decoration: none;
          display: inline-block;
          font-size: 24px;
-		 font-weight: bold;
          margin: 4px 2px;
          cursor: pointer;
 		 z-index: 2;
@@ -75,7 +73,6 @@
          text-decoration: none;
          display: inline-block;
          font-size: 24px;
-		 font-weight: bold;
          margin: 4px 2px;
          cursor: pointer;
 		 z-index: 2;
@@ -98,7 +95,6 @@
          text-decoration: none;
          display: inline-block;
          font-size: 24px;
-		 font-weight: bold;
          margin: 4px 2px;
          cursor: pointer;
 		 z-index: 2;
@@ -108,21 +104,43 @@
       <a href="http://twitter.com/" class="button">Twitter</a>
    </body>
    </div>
-  
 </div>
 
-<div style = "position:relative; left:0px; top: -300px; z-index: 1 ;">
+<div style = "position:relative; left:0px; top:-300px; z-index: 0;">
+	      <style>
+         .bg-image {
+			/* The image used */
+			background-image: url("Moon.jpg");
+
+			/* Add the blur effect */
+			filter: blur(2px);
+			-webkit-filter: blur(2px);
+
+			/* Full height */
+			height: 100%;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+      </style>
+<div class="bg-image"></div>
+</div>
+
+<div style = "position:relative; left:0px; bottom: 1000px; z-index: 1 ;">
     <div class="photo">
   </div>
-  </div>
+</div>
+  
 <div style = "position:absolute; left:0px; bottom:0px; z-index: 2;">
 <!-- Start TC2000 widget -->
 <iframe width="2000px" noresize="noresize" scrolling="no" height="30" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=222412"></iframe>
 <!-- END TC2000 Widget -->
 </div>
 <div id="time-wrapper">
-				<div id="time"></div>
-				<div id="date"></div>
+		<div id="time"></div>
+		<div id="date"></div>
       </div>
 <div class="photo2" width>
 </div>
