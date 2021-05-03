@@ -4,12 +4,9 @@ var pog = Math.floor((Math.random() * 160) + 1);
 var getDefaultUrl = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&per_page=100&api_key=" + apiKey + "&user_id=" + defaultAlbum + "&page=" + pog + "&format=json&nojsoncallback=1";
 var getSetUrl = getDefaultUrl;
 
-
 $(document).ready(function() {
   var albumNumberFromChrome = null;
   getAlbumNumberAndUpdatePhoto();
-
-  
 
   setInterval(function () {
     updatePhoto(getSetUrl);
@@ -23,8 +20,6 @@ $(document).ready(function() {
     }
   });
 });
-
-
 
 function updatePhoto(setUrl) {
   $.get(setUrl)
