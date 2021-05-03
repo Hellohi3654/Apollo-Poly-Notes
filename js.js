@@ -1,32 +1,41 @@
 var apiKey = "28dc847dcca68c07d01a2d56c6567665";
-var defaultAlbum = "72157658601662068";
+var userId = "136485307@N06"
+function setAlbum(defaultAlbum) {
+var defaultAlbum = defaultAlbum
+}
 var getDefaultUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=" + defaultAlbum + "&format=json&nojsoncallback=1";
 var getSetUrl = getDefaultUrl;
+
+function randomAlbum() {
+	var getAlbumUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=" + apiKey + "&user_id=" + userId + "&format=json&nojsoncallback=1";
+	$.get(AlbumUrl)
+	var list = photosets.photoset.id;
+	var randomAlbum = list[Math.floor(Math.random()*list.length)];
+	var defaultAlbum = randomAlbum;
+	
+	$.get(AlbumUrl)
+    .success(function(data) {
+      if (data['stat'] === 'fail') {
+        $('h4').show();
+        getSetUrl = getAlbumUrl;
+        updatePhoto(getSetUrl);
+      } else {
+        if (setUrl !== getAlbumUrl) { $('h4').hide(); }
+        var albums = data.photosets.photoset;
+        var randomAlbum = selectRandomAlbum(albums);
+        setAlbum(defaultAlbum.id);
+      }
+    });
+}
 
 $(document).ready(function() {
   var albumNumberFromChrome = null;
   getAlbumNumberAndUpdatePhoto();
-
-  chrome.storage.onChanged.addListener(function(response, namespace) {
-    getAlbumNumberAndUpdatePhoto();
-  });
-
-  $('[name=album_number]').bind('input', function() {
-    chrome.storage.sync.set({ 'albumNumber': $(this).val() }, function(){
-    });
-  });
+  randomAlbum();
 
   setInterval(function () {
     updatePhoto(getSetUrl);
   }, 30000);
-
-  $('.help-button').click(function() {
-    if ($('.help').css('display') === 'none') {
-      $('.help').show();
-    } else {
-      $('.help').hide();
-    }
-  });
 });
 
 function updatePhoto(setUrl) {
@@ -73,6 +82,10 @@ function replacePhoto(photoId) {
 
 function selectRandomPhoto(photos) {
   return photos[Math.floor(Math.random()*photos.length)];
+}
+
+function selectRandomAlbum(albums) {
+  return albums[Math.floor(Math.random()*albums.length)];
 }
 
 function getAlbumNumberAndUpdatePhoto() {
