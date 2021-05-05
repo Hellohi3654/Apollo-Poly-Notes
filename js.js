@@ -11,14 +11,6 @@ $(document).ready(function() {
   setInterval(function () {
     updatePhoto(getSetUrl);
   }, 30000);
-
-  $('.help-button').click(function() {
-    if ($('.help').css('display') === 'none') {
-      $('.help').show();
-    } else {
-      $('.help').hide();
-    }
-  });
 });
 
 function updatePhoto(setUrl) {
@@ -60,6 +52,8 @@ function replacePhoto(photoId) {
       }
       var imageTag = "<img src='" + photoSrc + "'>";
       $(".photo").html(imageTag);
+      var imageRag = "<img class=bg-image src='" + photoSrc + "'>";
+      $(".photo2").html(imageRag);
     });
 }
 
