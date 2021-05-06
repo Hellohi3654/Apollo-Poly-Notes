@@ -9,5 +9,5 @@
    "manifest_version": 2,
    "name": "Apollo Poly Notes",
    "permissions": [ "storage" ],
-   "version": "1.1.7"
+   "version": "1.1.8"
 }
