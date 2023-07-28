@@ -113,14 +113,12 @@ body {
 
 #power-wrapper{
 	opacity: 0;
-	transition: all 0.5s ease;
-	color: white;
 	font-size: 3em;
 	width: 50%;
 	position: absolute;
 	top: 0px;
 	text-align: center;
-	right: -195px;
+	left: -130px;
 	z-index: 10000;
 	
 }
