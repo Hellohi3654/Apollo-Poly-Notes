@@ -492,4 +492,11 @@ body {
 	.zoomlevel {
 		zoom: 132.5%;
 	}
+	
+	#bgphoto2 {
+	position:absolute; 
+	right: 150px; 
+	top: 0px; 
+	z-index: 1000;
+}
 }
