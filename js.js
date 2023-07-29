@@ -33,8 +33,8 @@ function replacePhoto(photoId) {
   var getPhotoUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1";
   $.get(getPhotoUrl)
     .success(function(data) {
-      if (data.sizes.size[8]) {
-        var photoSrc = data.sizes.size[8].source;
+      if (data.sizes.size[10]) {
+        var photoSrc = data.sizes.size[10].source;
       } else if (data.sizes.size[7]) {
         var photoSrc = data.sizes.size[7].source;
       } else if (data.sizes.size[6]) {
