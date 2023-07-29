@@ -495,8 +495,22 @@ body {
 	
 	#bgphoto2 {
 	position:absolute; 
-	right: 150px; 
+	right: 200px; 
 	top: 0px; 
 	z-index: 1000;
-}
+	}
+	
+	.bg-image {
+			/* The image used */
+			background-image: inherit;
+
+			/* Full height */
+			height: 750px;
+			width: 750px;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
 }
