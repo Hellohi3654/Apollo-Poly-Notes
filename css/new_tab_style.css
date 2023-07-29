@@ -70,7 +70,6 @@ body {
 	border-radius: 50%;
 }
 
-
 .icons:active {
 	color:black;
 	background-color: rgba(255, 255, 255, 0.8);
@@ -94,7 +93,6 @@ body {
 #time-wrapper{
 	opacity: 0;
 	transition: all 0.5s ease;
-	background-color: #161616;
 	color: white;
 	display: table;
 	font-size: 3em;
@@ -111,12 +109,104 @@ body {
 }
 
 #power-wrapper{
-	opacity: 0;
+	opacity: 1; 
+	position:relative; 
+	left:-129px; 
+	top:2px;
 	font-size: 3em;
 	width: 50%;
 	text-align: center;
 	z-index: 10000;
 	
+}
+
+.power-window {
+	border-radius: 10px; 
+	background-color: #808080; 
+	width: 65%; 
+	min-height: 600px; 
+	border: 0px solid black;
+}
+
+.button1 {
+		 border-radius: 0px;
+         width: 130px;
+         padding: 2px 2px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 2px 2px;
+         cursor: pointer;
+		 z-index: 99;
+}
+
+.button2 {
+         border-radius: 0px;
+         width: 130px;
+         padding: 2px 2px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 2px 2px;
+         cursor: pointer;
+		 z-index: 100;
+}
+
+.button3 { 
+		 border-radius: 0px;
+         width: 130px;
+         padding: 2px 2px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 2px 2px;
+         cursor: pointer;
+		 z-index: 101;
+}
+
+#button1div {
+		position:relative; 
+		left:0px; 
+		top:4px; 
+		z-index: 99;
+	}
+	
+#button2div {
+		position:relative; 
+		left:136px; 
+		top:-66px; 
+		z-index: 100;
+	}
+	
+#button3div {
+		position:relative; 
+		left:270px; 
+		top:-138px; 
+		z-index: 101;
+	}
+	
+.bg-image {
+			/* The image used */
+			background-image: inherit;
+
+			/* Full height */
+			height: auto;
+			width: auto;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		
+#bgphoto2 {
+	position:absolute; 
+	right: 225px; 
+	top: 0px; 
+	z-index: 1000;
 }
 
 .move-up {
@@ -275,5 +365,127 @@ body {
 		-webkit-transform: rotate(90deg);
 	 	 transform: rotate(90deg);
 	 	 color: white;
+	}
+}
+
+@media all and (min-width: 2250px) and (max-width: 3000px) {
+    #time-wrapper {
+		opacity: 0;
+		transition: all 0.5s ease;
+		color: white;
+		display: table;
+		font-size: 6em;
+		width: 14%;
+		position: absolute;
+		bottom: 37.5px;
+		text-align: center;
+		right: 0px;
+		transform: translate(0px, 0px);
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	#power-wrapper {
+		opacity: 1; 
+		position:relative; 
+		left:-166px; 
+		top:6px;
+		min-height: 600px;
+		font-size: 6em;
+		width: 45%;
+		text-align: center;
+		z-index: 10000;
+	}
+	
+	.power-window {
+		border-radius: 10px; 
+		background-color: #808080; 
+		width: 70%; 
+		font-size: 24em;
+		min-height: 1000px; 
+		border: 0px solid black;
+	}
+
+	.button1 {
+		 border-radius: 0px;
+         width: 260px;
+         padding: 6px 6px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 6px 6px;
+         cursor: pointer;
+		 z-index: 99;
+	}
+	
+	#button1div {
+		position:relative; 
+		left:-20px; 
+		top:4px; 
+		z-index: 99;
+	}
+
+	.button2 {
+         border-radius: 0px;
+         width: 260px;
+         padding: 6px 6px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 6px 6px;
+         cursor: pointer;
+		 z-index: 100;
+	}
+	
+	#button2div {
+		position:relative; 
+		left:150px; 
+		top:-140px; 
+		z-index: 100;
+	}
+
+	.button3 { 
+		 border-radius: 0px;
+         width: 260px;
+         padding: 6px 6px;
+         text-align: centre;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 24px;
+         margin: 6px 6px;
+         cursor: pointer;
+		 z-index: 101;
+	}
+	
+	#button3div {
+		position:relative; 
+		left:320px; 
+		top:-286px; 
+		z-index: 101;
+	}
+	
+	.bg-image {
+			/* The image used */
+			background-image: inherit;
+
+			/* Full height */
+			height: 1350px;
+			width: 1350px;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	
+	#bgphoto2 {
+		position:absolute; 
+		right: 370px; 
+		top: 0px; 
+		z-index: 1000;
 	}
 }
