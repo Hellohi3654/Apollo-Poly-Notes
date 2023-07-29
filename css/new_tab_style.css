@@ -116,8 +116,7 @@ body {
 	font-size: 3em;
 	width: 50%;
 	text-align: center;
-	z-index: 10000;
-	
+	z-index: 10000;	
 }
 
 .power-window {
@@ -212,7 +211,6 @@ body {
 .move-up {
 	top: 13%;
 }
-
 
 .note>span {
 	display: inline-block;
@@ -487,5 +485,11 @@ body {
 		right: 370px; 
 		top: 0px; 
 		z-index: 1000;
+	}
+}
+
+@media all and (min-width: 1920px) and (max-width: 2250px) {
+	.zoomlevel {
+		zoom: 125%;
 	}
 }
