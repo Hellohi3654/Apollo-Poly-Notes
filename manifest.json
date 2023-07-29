@@ -6,8 +6,8 @@
    "icons": {
       "128": "new-tab-icon.png"
    },
-   "manifest_version": 2,
+   "manifest_version": 3,
    "name": "Apollo Poly Notes",
    "permissions": [ "storage" ],
-   "version": "1.2.0"
+   "version": "1.4.1"
 }

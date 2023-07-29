@@ -108,6 +108,14 @@ body {
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+#power-wrapper{
+	opacity: 0;
+	font-size: 3em;
+	width: 50%;
+	text-align: center;
+	z-index: 10000;
 	
 }
 
