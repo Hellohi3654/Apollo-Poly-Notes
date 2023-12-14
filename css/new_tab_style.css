@@ -367,6 +367,11 @@ body {
 }
 
 @media all and (min-width: 2250px) and (max-width: 3000px) {
+	
+	.zoomlevel {
+		zoom: 110%;
+	}
+	
     #time-wrapper {
 		opacity: 0;
 		transition: all 0.5s ease;
@@ -388,7 +393,7 @@ body {
 	#power-wrapper {
 		opacity: 1; 
 		position:relative; 
-		left:-180px; 
+		left:-166px; 
 		top:6px;
 		min-height: 600px;
 		font-size: 6em;
@@ -402,13 +407,13 @@ body {
 		background-color: #808080; 
 		width: 70%; 
 		font-size: 24em;
-		min-height: 1440px; 
+		min-height: 1250px; 
 		border: 0px solid black;
 	}
 
 	.button1 {
 		 border-radius: 0px;
-         width: 340px;
+         width: 260px;
          padding: 6px 6px;
          text-align: centre;
          text-decoration: none;
@@ -421,7 +426,7 @@ body {
 	
 	#button1div {
 		position:relative; 
-		left:60px; 
+		left:-20px; 
 		top:4px; 
 		z-index: 99;
 	}
@@ -441,7 +446,7 @@ body {
 	
 	#button2div {
 		position:relative; 
-		left:370px; 
+		left:250px; 
 		top:-140px; 
 		z-index: 100;
 	}
@@ -461,7 +466,7 @@ body {
 	
 	#button3div {
 		position:relative; 
-		left:760px; 
+		left:520px; 
 		top:-286px; 
 		z-index: 101;
 	}
