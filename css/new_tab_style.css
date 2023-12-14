@@ -366,7 +366,7 @@ body {
 	}
 }
 
-@media all and (min-width: 2250px) and (max-width: 3000px) {
+@media all and (min-width: 2000px) and (max-width: 10000px) {
 	
 	.zoomlevel {
 		zoom: 112.5%;
