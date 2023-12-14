@@ -388,7 +388,7 @@ body {
 	#power-wrapper {
 		opacity: 1; 
 		position:relative; 
-		left:-166px; 
+		left:-180px; 
 		top:6px;
 		min-height: 600px;
 		font-size: 6em;
@@ -402,13 +402,13 @@ body {
 		background-color: #808080; 
 		width: 70%; 
 		font-size: 24em;
-		min-height: 1250px; 
+		min-height: 1440px; 
 		border: 0px solid black;
 	}
 
 	.button1 {
 		 border-radius: 0px;
-         width: 260px;
+         width: 340px;
          padding: 6px 6px;
          text-align: centre;
          text-decoration: none;
@@ -421,7 +421,7 @@ body {
 	
 	#button1div {
 		position:relative; 
-		left:-20px; 
+		left:60px; 
 		top:4px; 
 		z-index: 99;
 	}
@@ -441,7 +441,7 @@ body {
 	
 	#button2div {
 		position:relative; 
-		left:250px; 
+		left:370px; 
 		top:-140px; 
 		z-index: 100;
 	}
@@ -461,7 +461,7 @@ body {
 	
 	#button3div {
 		position:relative; 
-		left:520px; 
+		left:760px; 
 		top:-286px; 
 		z-index: 101;
 	}
@@ -505,7 +505,7 @@ body {
 			background-image: inherit;
 
 			/* Full height */
-			height: 750px;
+			height: auto;
 			width: 750px;
 
 			/* Center and scale the image nicely */
