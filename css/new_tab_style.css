@@ -369,7 +369,7 @@ body {
 @media all and (min-width: 2250px) and (max-width: 3000px) {
 	
 	.zoomlevel {
-		zoom: 110%;
+		zoom: 112.5%;
 	}
 	
     #time-wrapper {
