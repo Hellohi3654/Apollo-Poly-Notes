@@ -119,10 +119,6 @@ body {
 	z-index: 10000;	
 }
 
-.zoomlevel {
-		zoom: 112.5%;
-	}
-
 .power-window {
 	border-radius: 10px; 
 	background-color: #808080; 
