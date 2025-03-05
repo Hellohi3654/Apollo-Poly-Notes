@@ -186,7 +186,26 @@ body {
 		top:-138px; 
 		z-index: 101;
 	}
-	
+
+.button-container {
+        display: flex;
+        justify-content: space-around;
+        width: 30%;
+        padding: 10px 0;
+      }
+
+.button-container a {
+        flex: 1;
+        margin: 0 10px;
+        text-align: center;
+      }
+
+.button-container img {
+        width: 75%;
+        height: auto;
+        max-width: 150px;
+      }
+
 .bg-image {
 			/* The image used */
 			background-image: inherit;
