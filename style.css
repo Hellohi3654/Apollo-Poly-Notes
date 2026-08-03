@@ -29,7 +29,6 @@ html, body {
 
 /* --- SIDEBAR --- */
 .sidebar {
-  /* Restored original width range fitting all graph contents perfectly */
   flex: 0 0 clamp(580px, 32vw, 680px);
   height: 100vh;
   background: rgba(18, 18, 18, 0.95);
@@ -47,9 +46,9 @@ html, body {
 /* --- GRIDIQ WIDGET (TOP LIVE PRICES) --- */
 .gridiq-container {
   width: 100%;
-  height: clamp(85px, 10.5vh, 110px);
+  height: clamp(88px, 10vh, 108px);
   border-radius: 12px;
-  overflow: hidden;
+  overflow: hidden; /* Clips excess iframe height cleanly */
   background: #161616;
   flex-shrink: 0;
   position: relative;
@@ -58,9 +57,13 @@ html, body {
 
 .gridiq-widget {
   width: 100%;
-  height: 220px;
+  height: 200px; /* Generous internal height eliminates inner iframe scrollbar */
   border: none;
-  transform: translateY(-42px); 
+  position: absolute;
+  top: -38px; /* Aligns price boxes vertically */
+  left: 0;
+  overflow: hidden;
+  pointer-events: none; /* Prevents user scrolling or mouse interaction */
 }
 
 /* --- CHART CONTAINER (NEMWATCH FUEL TYPE) --- */
@@ -161,7 +164,7 @@ html, body {
 /* Dynamic Clock Widget - Right side of photo */
 #time-wrapper {
   order: 2;
-  flex: 1; /* Spans to the right window edge */
+  flex: 1;
   min-width: clamp(200px, 15vw, 280px);
   text-align: center;
   padding: clamp(12px, 1.8vh, 22px) clamp(16px, 1.8vw, 24px);
@@ -175,7 +178,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Larger time font */
 #time {
   font-size: clamp(2.4rem, 3.6vw, 4.5rem);
   font-weight: bold;
