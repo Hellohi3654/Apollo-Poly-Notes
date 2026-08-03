@@ -1,13 +1,26 @@
 {
-   "chrome_url_overrides": {
-      "newtab": "index.html"
-   },
-   "description": "Apollo Missions background new tab",
+   "manifest_version": 3,
+   "name": "Apollo Pics + NEM Tracker",
+   "version": "1.4.5",
+   "description": "Apollo Missions + NEM Info",
    "icons": {
       "128": "new-tab-icon.png"
    },
-   "manifest_version": 3,
-   "name": "Apollo Poly Notes",
-   "permissions": [ "storage" ],
-   "version": "1.4.3"
+   "chrome_url_overrides": {
+      "newtab": "index.html"
+   },
+   "permissions": [ 
+      "storage",
+      "declarativeNetRequest"
+   ],
+   "host_permissions": [
+      "<all_urls>"
+   ],
+   "declarative_net_request": {
+      "rule_resources": [{
+         "id": "ruleset_1",
+         "enabled": true,
+         "path": "rules.json"
+      }]
+   }
 }

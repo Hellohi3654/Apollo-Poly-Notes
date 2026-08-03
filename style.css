@@ -1,45 +1,333 @@
-body {
-  overflow: hidden; 
+/* =========================================
+   GLOBAL & RESET
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* =========================================
+   UTILITIES & OVERRIDES
+   ========================================= */
 h4 {
   text-align: center;
   color: red;
   display: none;
 }
 
-.photo {
-  max-height: 100vh;
-  max-width: 100vw;
+p {
+  margin: 10px 0;
 }
 
-img {
+img.default-img {
   display: block;
-  margin: 0px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   width: 50%;
   height: auto;
 }
 
-
-
 input {
   position: absolute;
-  top: 10px;
-  right: 1vw;
+  top: 20px;
+  right: 2vw;
   width: 12vw;
+  min-width: 150px;
   color: rgb(0, 0, 0);
+  z-index: 100000;
+  border-radius: 4px;
+  padding: 4px;
 }
 
 .help {
   display: none;
   position: absolute;
-  top: 66px;
-  right: 1vw;
+  top: 60px;
+  right: 2vw;
   width: 12vw;
-  color: grey;
+  min-width: 150px;
+  color: #cccccc;
+  z-index: 100000;
 }
 
-p {
-  margin: 10px 0;
+/* =========================================
+   DASHBOARD LAYOUT (2-COLUMN)
+   ========================================= */
+.dashboard-layout {
+  display: flex !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  position: relative !important;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 45vw;
+  min-width: 650px;
+  max-width: 850px;
+  height: 100vh;
+  background: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 16px !important;
+  gap: 12px !important;
+  z-index: 9999;
+  box-sizing: border-box;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+}
+
+/* --- GRIDIQ WIDGET OFFSET --- */
+.gridiq-container {
+  width: 100% !important;
+  height: 110px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #161616 !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.gridiq-widget {
+  width: 100% !important;
+  height: 200px !important;
+  border: none !important;
+  transform: translateY(-35px) !important; 
+}
+
+/* --- CHART CONTAINER (Reclaimed Vertical Space) --- */
+.chart-container {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #161616 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  position: relative !important;
+}
+
+.power-window {
+  width: 118% !important;    
+  height: 118% !important;   /* Give it slightly more height to cover the bottom */
+  border: none !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;       
+  /* Combine translate and scale into ONE line so neither gets overwritten */
+  transform: translate(-50%, -50%) scale(0.85) !important;
+  transform-origin: center center !important;
+}
+
+/* --- SIDEBAR FOOTER (Buttons & Clock) --- */
+.sidebar-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+  width: 100% !important;
+}
+
+/* Nav Buttons Bar */
+.nav-buttons {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  padding: 0px 10px !important; 
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.nav-buttons a {
+  flex: 1 !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 0 !important; 
+  border-radius: 8px !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.nav-buttons a:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.nav-buttons img {
+  width: 64px !important;  
+  height: 64px !important; 
+  object-fit: contain !important;
+  margin: 0 auto !important;
+}
+
+/* --- CLOCK CONTAINER (Moved Overlay on Photo) --- */
+#time-wrapper {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: auto !important;
+  min-width: 180px !important;
+  text-align: center !important;
+  padding: 10px 18px !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  z-index: 10000 !important;
+  pointer-events: none !important;
+}
+
+#time, #date {
+  position: static !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+#time {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem) !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+}
+
+#date {
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem) !important;
+  opacity: 0.85 !important;
+  margin-top: 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  white-space: nowrap !important;
+}
+
+/* --- RIGHT SIDE: PHOTO STAGE --- */
+#bgphoto2 {
+  position: relative !important;
+  inset: auto !important;
+  top: 0 !important;
+  left: 0 !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+
+.photo, .photo2 {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* =========================================
+   16:9 ASPECT RATIO & SHORT SCREEN OPTIMIZATIONS
+   ========================================= */
+@media (max-height: 900px) or (max-aspect-ratio: 16/9) {
+  .sidebar {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+
+  .gridiq-container {
+    height: 100px !important;
+  }
+
+  .gridiq-widget {
+    transform: translateY(-32px) !important;
+  }
+
+  .sidebar-footer {
+    gap: 6px !important;
+  }
+
+  .nav-buttons {
+    padding: 6px 10px !important;
+  }
+
+  .nav-buttons img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+/* --- CLOCK CONTAINER (Pinned Over Photo Stage) --- */
+#time-wrapper {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important; /* Pins to top-right of the viewport over the photo */
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  
+  width: auto !important;
+  min-width: 180px !important;
+  text-align: center !important;
+  padding: 10px 18px !important;
+  
+  /* Translucent frosted glass */
+  background: rgba(18, 18, 18, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+  
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  z-index: 999999 !important; /* Maximum z-index priority */
+  pointer-events: none !important;
+}
+
+#time, #date {
+  position: static !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+#time {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem) !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+}
+
+#date {
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem) !important;
+  opacity: 0.85 !important;
+  margin-top: 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  white-space: nowrap !important;
+}
 }
