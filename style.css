@@ -29,7 +29,7 @@ html, body {
 
 /* --- SIDEBAR --- */
 .sidebar {
-  /* Balanced width range fitting all graph contents perfectly */
+  /* Restored original width range fitting all graph contents perfectly */
   flex: 0 0 clamp(580px, 32vw, 680px);
   height: 100vh;
   background: rgba(18, 18, 18, 0.95);
@@ -137,37 +137,34 @@ html, body {
   min-width: 0;
   height: 100vh;
   overflow: hidden;
-  padding: clamp(8px, 1.5vh, 16px); /* Creates a clean gap around the photo frame */
+  padding: clamp(10px, 1.5vh, 18px);
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(10px, 1.5vh, 18px);
 }
 
-/* Photo div element */
-.photo, .photo2 {
-  position: absolute;
-  inset: clamp(8px, 1.5vh, 16px);
-  /* 'contain' fits full height/width without cropping; 'left center' anchors it against sidebar gap */
-  background-position: left center !important;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-}
-
-/* Standard HTML <img> fallback */
-#bgphoto2 img {
+/* Photo element - Left aligned next to sidebar */
+.photo, .photo2, #bgphoto2 img {
+  order: 1;
   height: 100%;
   width: auto;
   max-width: 100%;
   object-fit: contain;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  background-position: left center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
   object-position: left center;
 }
 
-/* Floating Clock Widget */
+/* Dynamic Clock Widget - Right side of photo */
 #time-wrapper {
-  position: absolute;
-  top: clamp(14px, 2.5vh, 28px);
-  right: clamp(14px, 2.5vw, 28px);
-  width: auto;
-  min-width: clamp(150px, 12vw, 240px);
+  order: 2;
+  flex: 1; /* Spans to the right window edge */
+  min-width: clamp(200px, 15vw, 280px);
   text-align: center;
-  padding: clamp(8px, 1.2vh, 14px) clamp(14px, 1.8vw, 24px);
+  padding: clamp(12px, 1.8vh, 22px) clamp(16px, 1.8vw, 24px);
   background: rgba(18, 18, 18, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -178,8 +175,9 @@ html, body {
   pointer-events: none;
 }
 
+/* Larger time font */
 #time {
-  font-size: clamp(1.5rem, 2.4vw, 2.8rem);
+  font-size: clamp(2.4rem, 3.6vw, 4.5rem);
   font-weight: bold;
   line-height: 1;
   color: #ffffff;
@@ -187,9 +185,9 @@ html, body {
 }
 
 #date {
-  font-size: clamp(0.7rem, 0.9vw, 0.95rem);
+  font-size: clamp(0.75rem, 0.95vw, 1.05rem);
   opacity: 0.85;
-  margin-top: 4px;
+  margin-top: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #ffffff;
