@@ -1,47 +1,80 @@
-<html>
- <head>
- <title id="tab_title"></title>
-        <body style="background-color: #161616;">
-        </body>
-  <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/new_tab_style.css">
-	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-  	<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="js/new_tab_script.js"></script>
-	<script type='text/javascript' src='js/jquery.mousewheel.min.js'></script>
-  <script type="text/javascript" src="jquery.js"></script>
-  <script type="text/javascript" src="js.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-<div class="zoomlevel">
+  <title id="tab_title">Dashboard</title>
+
+  <!-- Google Fonts & Stylesheets -->
+  <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/new_tab_style.css">
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+  <script type="text/javascript" src="js/new_tab_script.js"></script>
+  <script type="text/javascript" src="js.js"></script>
+</head>
 <body>
-	<div id="power-wrapper">
-		<iframe class="power-window" src="https://ausrealtimefueltype.global-roam.com"></iframe>
-	</div>
 
-	<div class="button-container">
-      <a href="https://youtube.com/" class="button1"><img src="google_youtube.png" /></a>
-      <a href="https://reddit.com/" class="button2"><img src="app_reddit_og.png" /></a>
-      <a href="https://storage.hellohi3654.com/" class="button3"><img src="app_nextcloud.png" /></a>
-    </div>
-</body>
-
-<div id="bgphoto2">
-<div class="photo2"></div>
-</div>
-  
-<div style = "position:absolute; left:0px; bottom:0px; z-index: 10000;">
-<!-- Start TC2000 widget -->
-<iframe width="3840px" noresize="noresize" scrolling="no" height="30" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=1702379"></iframe>
-<!-- END TC2000 Widget -->
-</div>
-
-<div id="time-wrapper" style="z-index: 100000;">
-		<div id="time"></div>
-		<div id="date"></div>
+  <div class="dashboard-layout">
+    
+    <!-- Expanded Dedicated Sidebar -->
+    <aside class="sidebar">
+      
+      <!-- Electricity Price Bar (Wrapped to allow vertical offset) -->
+      <div class="gridiq-container">
+        <iframe
+          class="gridiq-widget"
+          src="https://gridiq.com.au/embed/prices"
+          title="Live NEM + WEM electricity prices"
+          loading="lazy">
+        </iframe>
       </div>
-	  
-</div>
+
+      <!-- Main Fuel Type Chart Container -->
+      <div class="chart-container">
+        <iframe 
+          class="power-window" 
+          src="https://ausrealtimefueltype.global-roam.com"
+          title="Aus Realtime Fuel Type">
+        </iframe>
+      </div>
+
+      <!-- Bottom Control Bar (Buttons Only) -->
+      <div class="sidebar-footer">
+        <nav class="nav-buttons">
+          <a href="https://youtube.com/" class="button1" title="YouTube">
+            <img src="google_youtube.png" alt="YouTube" />
+          </a>
+          <a href="https://reddit.com/" class="button2" title="Reddit">
+            <img src="app_reddit_og.png" alt="Reddit" />
+          </a>
+          <a href="https://openelectricity.org.au/" class="button3" title="Open Electricity">
+            <img src="https://platform.openelectricity.org.au/logo/oe-icon-black.svg" alt="Open Electricity" style="border-radius: 5px;"/>
+          </a>
+          <a href="https://www.ozbargain.com.au/" class="button4" title="OzBargain">
+            <img src="https://files.delvu.com/images/ozbargain/logo/Square%20Flat.png" alt="OzBargain" style="border-radius: 5px;" />
+          </a>
+        </nav>
+      </div>
+
+    </aside>
+
+    <!-- Photo Display Stage -->
+    <main id="bgphoto2">
+      <!-- Floating Clock Widget -->
+      <footer id="time-wrapper">
+        <div id="time"></div>
+        <div id="date"></div>
+      </footer>
+
+      <div class="photo2"></div>
+    </main>
+
+  </div>
+
+</body>
 </html>
