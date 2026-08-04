@@ -14,7 +14,8 @@
       "declarativeNetRequest"
    ],
    "host_permissions": [
-      "<all_urls>"
+     "https://*.gridiq.com.au/*",
+     "https://*.nemwatch.com.au/*"
    ],
    "declarative_net_request": {
       "rule_resources": [{
