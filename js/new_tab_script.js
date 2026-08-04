@@ -88,8 +88,9 @@ function updateClock() { //get time
     }
 
 
-    document.getElementById("date").innerHTML = day + " " + date + " of " + month;
-    document.getElementById("time").innerHTML = hour + ":" + minute + ":" + second;
+    document.getElementById("date").innerHTML = day + "<br>" + date + " of " + month;
+    document.getElementById("time-hm").innerHTML = hour + ":" + minute;
+    document.getElementById("time-sec").innerHTML = ":" + second;
     document.getElementById("tab_title").innerHTML = "New Tab - " + hour + ":" + minute + ":" + second;
     setTimeout(updateClock, 500); //refresh clock every second
 }
