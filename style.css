@@ -46,9 +46,9 @@ html, body {
 /* --- GRIDIQ WIDGET (TOP LIVE PRICES) --- */
 .gridiq-container {
   width: 100%;
-  height: clamp(88px, 10vh, 108px);
+  height: clamp(88px, 10vh, 108px); /* Fixed visible window height */
   border-radius: 12px;
-  overflow: hidden;
+  overflow: hidden; /* Silently crops off the iframe's lower region */
   background: #161616;
   flex-shrink: 0;
   position: relative;
@@ -57,10 +57,10 @@ html, body {
 
 .gridiq-widget {
   width: 100%;
-  height: 200px;
+  height: 350px; /* Pushes iframe's internal 'bottom: 0' far past the cropped container */
   border: none;
   position: absolute;
-  top: -38px;
+  top: -38px; /* Keeps price cards perfectly centered */
   left: 0;
   overflow: hidden;
   pointer-events: none;
