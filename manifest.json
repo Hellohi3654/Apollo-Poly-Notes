@@ -4,7 +4,7 @@
    "version": "1.5.0",
    "description": "Apollo Missions + NEM Info",
    "icons": {
-      "128": "new-tab-icon.png"
+      "128": "icons/new-tab-icon.png"
    },
    "chrome_url_overrides": {
       "newtab": "index.html"
