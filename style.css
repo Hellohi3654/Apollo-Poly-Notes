@@ -61,10 +61,10 @@ html, body {
   height: clamp(88px, 10vh, 108px); /* Fixed visible window height */
   border-radius: 12px;
   overflow: hidden; /* Silently crops off the iframe's lower region */
-  background: #161616;
+  background: #808080;
   flex-shrink: 0;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .gridiq-widget {
