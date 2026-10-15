@@ -1,6 +1,7 @@
 $(document).ready(function() {
     updateClock(); //initial loading of clock
     initGridPrices(); //initial loading of NEM grid prices
+
     setTimeout(function() {
         $("#icon-wrapper").css({
             'opacity': 1
@@ -19,7 +20,7 @@ $(document).ready(function() {
         }, 200);
     }, 100);
 
-})
+});
 
 function findIndexByKeyValue(array, property, string) {
     for (var i = 0; i < array.length; i++) {
@@ -29,7 +30,6 @@ function findIndexByKeyValue(array, property, string) {
     }
     return null;
 }
-
 
 function updateClock() { //get time
     var d = new Date();
@@ -87,7 +87,6 @@ function updateClock() { //get time
             date = date + "th";
             break;
     }
-
 
     document.getElementById("date").innerHTML = day + "<br>" + date + " of " + month;
     var fullTime = hour + ":" + minute + ":" + second;

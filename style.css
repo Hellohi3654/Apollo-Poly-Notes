@@ -28,7 +28,7 @@ html, body {
 }
 
 /* =========================================
-   DASHBOARD LAYOUT
+   DASHBOARD LAYOUT (50/50 SPLIT)
    ========================================= */
 .dashboard-layout {
   display: flex;
@@ -38,10 +38,12 @@ html, body {
   overflow: hidden;
 }
 
-/* --- SIDEBAR --- */
+/* --- LEFT HALF: SIDEBAR --- */
 .sidebar {
-  flex: 1 1 clamp(620px, 50vw, 980px); /* was: 0 0 ... */
-  min-width: clamp(620px, 47vw, 980px); /* keeps your original floor */
+  flex: 0 0 50vw;
+  width: 50vw;
+  max-width: 50vw;
+  min-width: 50vw;
   height: 100vh;
   background: rgba(18, 18, 18, 0.95);
   backdrop-filter: blur(16px);
@@ -49,8 +51,8 @@ html, body {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  padding: clamp(10px, 1.4vh, 16px);
-  gap: clamp(10px, 1.4vh, 14px);
+  padding: clamp(10px, 1.2vh, 20px);
+  gap: clamp(8px, 1vh, 14px);
   z-index: 100;
   overflow: hidden;
 }
@@ -58,8 +60,8 @@ html, body {
 /* --- LIVE GRID PRICES CONTAINER --- */
 .grid-prices-container {
   width: 100%;
-  height: clamp(96px, 12vh, 120px); /* Expanded visible window height to let bigger text fill boxes */
-  border-radius: 12px;
+  height: clamp(88px, 11vh, 130px);
+  border-radius: clamp(12px, 0.7vw, 24px);
   overflow: hidden;
   background: #161616;
   flex-shrink: 0;
@@ -68,15 +70,15 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
-  gap: 8px;
+  padding: clamp(6px, 0.7vh, 12px);
+  gap: clamp(6px, 0.4vw, 12px);
 }
 
 .price-card-loading {
   width: 100%;
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
+  font-size: clamp(14px, 0.9vw, 24px);
   letter-spacing: 0.5px;
 }
 
@@ -89,9 +91,9 @@ html, body {
   justify-content: center;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
+  border-radius: clamp(8px, 0.5vw, 16px);
   height: 100%;
-  padding: 6px 4px;
+  padding: clamp(4px, 0.5vh, 10px) clamp(4px, 0.3vw, 8px);
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   user-select: none;
 }
@@ -103,7 +105,7 @@ html, body {
 }
 
 .state-code {
-  font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+  font-size: clamp(11px, 0.7vw, 22px);
   font-weight: 800;
   letter-spacing: 2px;
   color: #9ca3af;
@@ -112,14 +114,14 @@ html, body {
 
 .state-price {
   font-family: Arial, sans-serif;
-  font-size: clamp(1.4rem, 2.2vw, 2.3rem);
+  font-size: clamp(18px, 1.25vw, 42px);
   font-weight: 800;
   line-height: 1.1;
   white-space: nowrap;
 }
 
 .state-unit {
-  font-size: clamp(0.68rem, 0.88vw, 0.85rem);
+  font-size: clamp(8px, 0.5vw, 16px);
   color: #9ca3af;
   margin-top: 3px;
   font-weight: 600;
@@ -131,7 +133,7 @@ html, body {
 }
 
 .state-price.price-normal {
-  color: #b3b3b3; 
+  color: #b3b3b3;
 }
 
 .state-price.price-elevated {
@@ -147,23 +149,24 @@ html, body {
   flex: 1 1 auto;
   width: 100%;
   min-height: 0;
-  border-radius: 12px;
+  border-radius: clamp(12px, 0.7vw, 24px);
   overflow: hidden;
   background: #161616;
   border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
-  padding: 8px;
+  padding: 4px;
   display: flex;
 }
 
 .power-window {
   width: 100%;
   height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
+  border: none;
+  border-radius: clamp(8px, 0.5vw, 16px);
   background-color: #161616;
   color-scheme: dark;
   overflow: hidden;
+  display: block;
 }
 
 /* --- NAV BUTTONS FOOTER --- */
@@ -176,10 +179,10 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: clamp(6px, 1vh, 10px) 12px;
+  gap: clamp(8px, 0.5vw, 16px);
+  padding: clamp(5px, 0.8vh, 12px) clamp(10px, 0.8vw, 20px);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: clamp(12px, 0.7vw, 24px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
 }
@@ -189,8 +192,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 0;
-  border-radius: 8px;
+  padding: clamp(4px, 0.4vh, 8px) 0;
+  border-radius: clamp(8px, 0.5vw, 16px);
   transition: background 0.2s ease, transform 0.2s ease;
   text-decoration: none;
 }
@@ -203,7 +206,7 @@ html, body {
 .nav-buttons img {
   width: auto;
   max-width: 100%;
-  height: clamp(28px, 4.5vh, 50px);
+  height: clamp(26px, 3.8vh, 56px);
   object-fit: contain;
 }
 
@@ -212,69 +215,79 @@ html, body {
 }
 
 /* =========================================
-   RIGHT SIDE: PHOTO STAGE & OVERLAY CLOCK
+   RIGHT HALF: PHOTO STAGE & OVERLAY CLOCK
    ========================================= */
 #bgphoto2 {
   position: relative;
-  flex: 1 1 auto;
-  min-width: 0;      /* critical: lets the flex item shrink below its content size */
-  max-width: 100vh;  /* caps it at the photo's natural square width so it won't overgrow */
-  height: 100%;         /* was: 100vh */
-  aspect-ratio: 1 / 1;  /* new */
+  flex: 0 0 50vw;
+  width: 50vw;
+  max-width: 50vw;
+  min-width: 50vw;
+  height: 100vh;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d0d0d;
 }
 
-/* Photo element - Left aligned against sidebar */
-.photo, .photo2, #bgphoto2 img {
-  height: 100%;
+.photo, .photo2 {
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Fill the entire right half of the screen edge-to-edge.
+   Change object-fit to 'contain' if you prefer uncropped photos with black bars. */
+#bgphoto2 img {
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
-  aspect-ratio: 1 / 1;
-  flex-shrink: 1;
-  background-position: left center !important;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  object-position: left center;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 
-/* Transparent Clock Widget - Locked to top right corner of the window */
+/* Transparent Clock Widget - Locked to bottom right corner of the window */
 #time-wrapper {
   position: fixed;
-  top: 20px;      /* was: clamp(14px, 2vh, 24px) */
-  right: -100px;    /* was: clamp(14px, 2vw, 24px) */
-  width: 340px;
+  top: auto;
+  bottom: clamp(16px, 2.2vh, 48px);
+  right: clamp(16px, 1.4vw, 44px);
+  width: max-content;
+  min-width: clamp(210px, 12.2vw, 470px);
   text-align: left;
-  z-index: 50;
+  z-index: 150;
   pointer-events: none;
 }
 
 #time {
   font-family: 'Nasalization', Arial, sans-serif;
-  font-size: 5.5rem;
+  font-size: clamp(44px, 2.86vw, 115px);
   font-weight: bold;
   line-height: 1;
   color: #FC3D21;
-  letter-spacing: -5px;
-  -webkit-text-stroke: 6px black;
-  paint-order: stroke fill; 
+  letter-spacing: -0.09em;
+  -webkit-text-stroke: clamp(4px, 0.31vw, 12px) black;
+  paint-order: stroke fill;
   text-shadow: 0 0px 10px black;
 }
 
 #date {
   font-family: 'Nasalization', Arial, sans-serif;
-  font-size: 2rem;
+  font-size: clamp(16px, 1.04vw, 42px);
   opacity: 0.95;
-  margin-top: 6px;
+  margin-top: clamp(4px, 0.5vh, 12px);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
   color: #FC3D21;
-  -webkit-text-stroke: 4px black;
-  paint-order: stroke fill; 
+  -webkit-text-stroke: clamp(3px, 0.21vw, 8px) black;
+  paint-order: stroke fill;
   text-shadow: 0 0px 10px black;
   white-space: nowrap;
 }
