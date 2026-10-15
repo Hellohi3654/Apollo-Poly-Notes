@@ -25,13 +25,8 @@
     <aside class="sidebar">
       
       <!-- Electricity Price Bar -->
-      <div class="gridiq-container">
-        <iframe
-          class="gridiq-widget"
-          src="https://gridiq.com.au/embed/prices"
-          title="Live NEM + WEM electricity prices"
-          loading="lazy">
-        </iframe>
+      <div class="grid-prices-container" id="grid-prices-container">
+        <div class="price-card-loading">Loading live NEM prices...</div>
       </div>
 
       <!-- Main Fuel Type Chart Container -->
@@ -39,7 +34,8 @@
         <iframe 
           class="power-window" 
           src="https://ausrealtimefueltype.global-roam.com"
-          title="Aus Realtime Fuel Type">
+          title="Aus Realtime Fuel Type"
+          allowtransparency="true">
         </iframe>
       </div>
 

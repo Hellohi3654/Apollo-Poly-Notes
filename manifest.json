@@ -1,7 +1,7 @@
 {
    "manifest_version": 3,
    "name": "Apollo Pics + NEM Tracker",
-   "version": "1.5.1",
+   "version": "1.5.3",
    "description": "Apollo Missions + NEM Info",
    "icons": {
       "128": "icons/new-tab-icon.png"
@@ -14,8 +14,9 @@
       "declarativeNetRequest"
    ],
    "host_permissions": [
-     "https://*.gridiq.com.au/*",
-     "https://*.nemwatch.com.au/*"
+     "https://*.nemwatch.com.au/*",
+     "https://*.aemo.com.au/*",
+     "https://*.global-roam.com/*"
    ],
    "declarative_net_request": {
       "rule_resources": [{
@@ -23,5 +24,30 @@
          "enabled": true,
          "path": "rules.json"
       }]
-   }
+   },
+   "content_scripts": [
+     {
+       "matches": [
+         "https://ausrealtimefueltype.global-roam.com/*"
+       ],
+       "all_frames": true,
+       "css": ["css/fuel_dark.css"],
+       "run_at": "document_start"
+     },
+     {
+       "matches": [
+         "https://ausrealtimefueltype.global-roam.com/*"
+       ],
+       "all_frames": true,
+       "js": ["js/fuel_dark.js"],
+       "world": "MAIN",
+       "run_at": "document_start"
+     }
+   ],
+   "web_accessible_resources": [
+     {
+       "resources": ["css/fuel_dark.css", "js/fuel_dark.js"],
+       "matches": ["https://ausrealtimefueltype.global-roam.com/*"]
+     }
+   ]
 }

@@ -1,5 +1,6 @@
 $(document).ready(function() {
     updateClock(); //initial loading of clock
+    initGridPrices(); //initial loading of NEM grid prices
     setTimeout(function() {
         $("#icon-wrapper").css({
             'opacity': 1
@@ -93,4 +94,115 @@ function updateClock() { //get time
     document.getElementById("time").innerHTML = fullTime;
     document.getElementById("tab_title").innerHTML = "New Tab - " + fullTime;
     setTimeout(updateClock, 500); //refresh clock every second
+}
+
+/* =========================================
+   AEMO NEM LIVE GRID PRICES
+   ========================================= */
+
+function initGridPrices() {
+    fetchGridPrices();
+}
+
+function fetchGridPrices() {
+    fetch("https://visualisations.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY", {
+        cache: "no-store"
+    })
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        renderGridPrices(data);
+        scheduleNextGridPriceFetch();
+    })
+    .catch(function(err) {
+        console.error("[NEM Prices] Fetch error:", err);
+        var container = document.getElementById("grid-prices-container");
+        if (container && !container.querySelector(".state-price-card")) {
+            container.innerHTML = '<div class="price-card-loading">Unable to load NEM prices (retrying in 15s)...</div>';
+        }
+        setTimeout(fetchGridPrices, 15000);
+    });
+}
+
+function scheduleNextGridPriceFetch() {
+    var now = new Date();
+    // Offset is 1 min 30 seconds (90s) after each 5 min interval (300s block)
+    var secondsIntoBlock = (now.getMinutes() % 5) * 60 + now.getSeconds() + (now.getMilliseconds() / 1000);
+    var targetOffset = 90; // 1m 30s
+    var secondsToWait;
+
+    if (secondsIntoBlock >= (targetOffset - 0.5)) {
+        secondsToWait = (300 - secondsIntoBlock) + targetOffset;
+    } else {
+        secondsToWait = targetOffset - secondsIntoBlock;
+    }
+
+    var msToWait = Math.round(secondsToWait * 1000);
+    console.log("[NEM Prices] Next fetch scheduled in " + Math.round(secondsToWait) + "s");
+    setTimeout(fetchGridPrices, msToWait);
+}
+
+function renderGridPrices(data) {
+    var container = document.getElementById("grid-prices-container");
+    if (!container) return;
+
+    var summary = data.ELEC_NEM_SUMMARY || [];
+    var pricesList = data.ELEC_NEM_SUMMARY_PRICES || [];
+
+    var regionMap = {};
+    pricesList.forEach(function(item) {
+        if (item.REGIONID) {
+            regionMap[item.REGIONID] = item.RRP;
+        }
+    });
+    summary.forEach(function(item) {
+        if (item.REGIONID && item.PRICE !== undefined) {
+            regionMap[item.REGIONID] = item.PRICE;
+        }
+    });
+
+    var regions = [
+        { code: "NSW", id: "NSW1" },
+        { code: "QLD", id: "QLD1" },
+        { code: "VIC", id: "VIC1" },
+        { code: "SA",  id: "SA1" },
+        { code: "TAS", id: "TAS1" }
+    ];
+
+    var cardsHtml = "";
+    regions.forEach(function(r) {
+        var priceVal = regionMap[r.id];
+        var priceText = "--";
+        var priceClass = "price-normal";
+
+        if (typeof priceVal === "number" && !isNaN(priceVal)) {
+            var rounded = priceVal.toFixed(2);
+            if (rounded === "-0.00") rounded = "0.00";
+            if (priceVal < 0) {
+                priceText = "-$" + Math.abs(priceVal).toFixed(2);
+                priceClass = "price-negative";
+            } else {
+                priceText = "$" + Number(rounded).toFixed(2);
+                if (priceVal > 300) {
+                    priceClass = "price-spike";
+                } else if (priceVal > 100) {
+                    priceClass = "price-elevated";
+                } else {
+                    priceClass = "price-normal";
+                }
+            }
+        }
+
+        cardsHtml += '<div class="state-price-card" title="' + r.code + ' Live Spot Price">' +
+            '<span class="state-code">' + r.code + '</span>' +
+            '<span class="state-price ' + priceClass + '">' + priceText + '</span>' +
+            '<span class="state-unit">$/MWh</span>' +
+            '</div>';
+    });
+
+    container.innerHTML = cardsHtml;
 }

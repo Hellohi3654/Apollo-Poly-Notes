@@ -1,0 +1,97 @@
+/* =========================================
+   AEMO FUEL TYPE DARK THEME INJECTION
+   ========================================= */
+
+html, body, #app, .app {
+  background-color: #1f1f1f !important;
+  color: #f3f4f6 !important;
+}
+
+/* Header & Timestamps */
+.widgetHeader, 
+.widgetHeader h1, 
+.widgetHeader h2, 
+.widgetHeader h3,
+.widgetHeader div,
+.widgetHeader span {
+  color: #ffffff !important;
+}
+
+.widgetHeader .time-stamp .date {
+  color: #9ca3af !important;
+}
+
+.widgetHeader .time-stamp .time {
+  color: #e5e7eb !important;
+}
+
+.widgetHeader .logos {
+  opacity: 0.9;
+}
+
+/* Legend items & text */
+.legend, 
+.legend-list-item, 
+.legend-text, 
+.legend-text span {
+  color: #e5e7eb !important;
+}
+
+/* Demand type pattern box subtle border */
+.legend-list-item .legend-box {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Summary Table at bottom */
+table, 
+table th, 
+table td, 
+table tr, 
+table span {
+  color: #e5e7eb !important;
+}
+
+table thead {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+table tbody tr:first-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Action buttons at bottom */
+.actions button {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 4px !important;
+}
+
+.actions button:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.actions button .img, 
+.actions button img,
+.info-icon {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Loading overlay */
+.fullscreen-loading {
+  background-color: #1f1f1f !important;
+}
+
+/* Dropup menu */
+.actions .dropup .dropup-content {
+  background-color: #2a2a2a !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.actions .dropup .dropup-content .dropup-item {
+  color: #ffffff !important;
+}
+
+.actions .dropup .dropup-content a:nth-of-type(2n) {
+  background-color: #252525 !important;
+}

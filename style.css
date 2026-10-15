@@ -55,27 +55,91 @@ html, body {
   overflow: hidden;
 }
 
-/* --- GRIDIQ WIDGET (TOP LIVE PRICES) --- */
-.gridiq-container {
+/* --- LIVE GRID PRICES CONTAINER --- */
+.grid-prices-container {
   width: 100%;
-  height: clamp(88px, 10vh, 108px); /* Fixed visible window height */
+  height: clamp(96px, 12vh, 120px); /* Expanded visible window height to let bigger text fill boxes */
   border-radius: 12px;
-  overflow: hidden; /* Silently crops off the iframe's lower region */
+  overflow: hidden;
   background: #161616;
   flex-shrink: 0;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  gap: 8px;
 }
 
-.gridiq-widget {
+.price-card-loading {
   width: 100%;
-  height: 350px; /* Pushes iframe's internal 'bottom: 0' far past the cropped container */
-  border: none;
-  position: absolute;
-  top: -38px; /* Keeps price cards perfectly centered */
-  left: 0;
-  overflow: hidden;
-  pointer-events: none;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.state-price-card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  height: 100%;
+  padding: 6px 4px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.state-price-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.state-code {
+  font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #9ca3af;
+  margin-bottom: 2px;
+}
+
+.state-price {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.state-unit {
+  font-size: clamp(0.68rem, 0.88vw, 0.85rem);
+  color: #9ca3af;
+  margin-top: 3px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.state-price.price-negative {
+  color: #4ade80; /* bright green for negative prices */
+}
+
+.state-price.price-normal {
+  color: #ffffff; /* crisp white */
+}
+
+.state-price.price-elevated {
+  color: #fbbf24; /* warm amber for > $100 */
+}
+
+.state-price.price-spike {
+  color: #f87171; /* vivid coral/red for > $300 */
 }
 
 /* --- CHART CONTAINER (NEMWATCH FUEL TYPE) --- */
@@ -85,21 +149,21 @@ html, body {
   min-height: 0;
   border-radius: 12px;
   overflow: hidden;
-  background: #808080;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
+  padding: 8px;
+  display: flex;
 }
 
 .power-window {
-  width: 102%;
-  height: 102%;
-  border: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.97);
-  transform-origin: center center;
-  background-color: #808080;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  background-color: #1f1f1f;
+  color-scheme: dark;
+  overflow: hidden;
 }
 
 /* --- NAV BUTTONS FOOTER --- */

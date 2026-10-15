@@ -16,7 +16,7 @@
       ]
     },
     "condition": {
-      "urlFilter": "*gridiq.com.au*",
+      "urlFilter": "*global-roam.com*",
       "resourceTypes": ["sub_frame"]
     }
   }
