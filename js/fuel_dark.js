@@ -22,7 +22,7 @@
         lower.startsWith('rgba(0,0,0') ||
         lower.startsWith('rgba(46, 51, 61')
       ) {
-        this.fillStyle = '#f3f4f6';
+        this.fillStyle = '#a3a3a3'; // Dimmed to soft gray for OLED
       }
     }
     return originalFillText.apply(this, arguments);

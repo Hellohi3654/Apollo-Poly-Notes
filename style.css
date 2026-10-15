@@ -23,7 +23,7 @@ html, body {
   height: 100vh;
   overflow: hidden;
   background-color: #0d0d0d;
-  color: #ffffff;
+  color: #b3b3b3;
   font-family: Arial, sans-serif;
 }
 
@@ -131,7 +131,7 @@ html, body {
 }
 
 .state-price.price-normal {
-  color: #ffffff; /* crisp white */
+  color: #b3b3b3; 
 }
 
 .state-price.price-elevated {
@@ -161,7 +161,7 @@ html, body {
   height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
-  background-color: #1f1f1f;
+  background-color: #161616;
   color-scheme: dark;
   overflow: hidden;
 }

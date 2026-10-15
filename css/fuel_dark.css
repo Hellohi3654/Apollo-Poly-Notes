@@ -3,8 +3,8 @@
    ========================================= */
 
 html, body, #app, .app {
-  background-color: #1f1f1f !important;
-  color: #f3f4f6 !important;
+  background-color: #161616 !important;
+  color: #b3b3b3 !important;
 }
 
 /* Header & Timestamps */
@@ -14,19 +14,19 @@ html, body, #app, .app {
 .widgetHeader h3,
 .widgetHeader div,
 .widgetHeader span {
-  color: #ffffff !important;
+  color: #b3b3b3 !important;
 }
 
 .widgetHeader .time-stamp .date {
-  color: #9ca3af !important;
+  color: #888888 !important;
 }
 
 .widgetHeader .time-stamp .time {
-  color: #e5e7eb !important;
+  color: #a3a3a3 !important;
 }
 
 .widgetHeader .logos {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 /* Legend items & text */
@@ -34,12 +34,12 @@ html, body, #app, .app {
 .legend-list-item, 
 .legend-text, 
 .legend-text span {
-  color: #e5e7eb !important;
+  color: #b3b3b3 !important;
 }
 
 /* Demand type pattern box subtle border */
 .legend-list-item .legend-box {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 /* Summary Table at bottom */
@@ -48,50 +48,50 @@ table th,
 table td, 
 table tr, 
 table span {
-  color: #e5e7eb !important;
+  color: #b3b3b3 !important;
 }
 
 table thead {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.15) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 table tbody tr:first-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Action buttons at bottom */
 .actions button {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #b3b3b3 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 4px !important;
 }
 
 .actions button:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .actions button .img, 
 .actions button img,
 .info-icon {
-  filter: brightness(0) invert(1) !important;
+  filter: brightness(0) invert(0.7) !important;
 }
 
 /* Loading overlay */
 .fullscreen-loading {
-  background-color: #1f1f1f !important;
+  background-color: #161616 !important;
 }
 
 /* Dropup menu */
 .actions .dropup .dropup-content {
-  background-color: #2a2a2a !important;
+  background-color: #222222 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
 
 .actions .dropup .dropup-content .dropup-item {
-  color: #ffffff !important;
+  color: #b3b3b3 !important;
 }
 
 .actions .dropup .dropup-content a:nth-of-type(2n) {
-  background-color: #252525 !important;
+  background-color: #1a1a1a !important;
 }
