@@ -103,18 +103,31 @@ function initGridPrices() {
     fetchGridPrices();
 }
 
+var NEMWEB_DISPATCH_DIR = "https://nemweb.com.au/Reports/Current/DispatchIS_Reports/";
+
 function fetchGridPrices() {
-    fetch("https://visualisations.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY", {
-        cache: "no-store"
+    // 1. Read the NEMWeb directory listing and pick the newest dispatch zip
+    fetch(NEMWEB_DISPATCH_DIR, { cache: "no-store" })
+    .then(function(response) {
+        if (!response.ok) throw new Error("HTTP error " + response.status + " (listing)");
+        return response.text();
+    })
+    .then(function(html) {
+        var matches = html.match(/PUBLIC_DISPATCHIS_\d{12}_\d+\.zip/gi);
+        if (!matches || !matches.length) throw new Error("No dispatch files found in listing");
+        matches.sort();
+        var latest = matches[matches.length - 1];
+        // 2. Download the zip
+        return fetch(NEMWEB_DISPATCH_DIR + latest, { cache: "no-store" });
     })
     .then(function(response) {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
+        if (!response.ok) throw new Error("HTTP error " + response.status + " (zip)");
+        return response.arrayBuffer();
     })
-    .then(function(data) {
-        renderGridPrices(data);
+    // 3. Unzip and parse the CSV
+    .then(unzipFirstFile)
+    .then(function(csvText) {
+        renderGridPrices(parseDispatchPrices(csvText));
         scheduleNextGridPriceFetch();
     })
     .catch(function(err) {
@@ -125,6 +138,67 @@ function fetchGridPrices() {
         }
         setTimeout(fetchGridPrices, 15000);
     });
+}
+
+// Minimal zip reader: extracts the first file using the central directory
+// and the browser's built-in DecompressionStream (no external libraries).
+function unzipFirstFile(buffer) {
+    var view = new DataView(buffer);
+    var bytes = new Uint8Array(buffer);
+
+    // Find the End Of Central Directory record (signature 0x06054b50)
+    var eocd = -1;
+    for (var i = bytes.length - 22; i >= Math.max(0, bytes.length - 65557); i--) {
+        if (view.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+    }
+    if (eocd < 0) return Promise.reject(new Error("Invalid zip (no EOCD)"));
+
+    var cdOffset = view.getUint32(eocd + 16, true);
+    if (view.getUint32(cdOffset, true) !== 0x02014b50) {
+        return Promise.reject(new Error("Invalid zip (bad central directory)"));
+    }
+    var method = view.getUint16(cdOffset + 10, true);
+    var compSize = view.getUint32(cdOffset + 20, true);
+    var localOffset = view.getUint32(cdOffset + 42, true);
+
+    // Local file header: fixed 30 bytes + file name + extra field
+    var nameLen = view.getUint16(localOffset + 26, true);
+    var extraLen = view.getUint16(localOffset + 28, true);
+    var dataStart = localOffset + 30 + nameLen + extraLen;
+    var data = bytes.subarray(dataStart, dataStart + compSize);
+
+    if (method === 0) {
+        return Promise.resolve(new TextDecoder().decode(data));
+    }
+    if (method !== 8) {
+        return Promise.reject(new Error("Unsupported zip compression method " + method));
+    }
+    var stream = new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+    return new Response(stream).text();
+}
+
+// Pull regional RRP ($/MWh) values out of the DISPATCH,PRICE table of a DispatchIS CSV.
+function parseDispatchPrices(csvText) {
+    var regionMap = {};
+    var header = null;
+    var lines = csvText.split(/\r?\n/);
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.indexOf("I,DISPATCH,PRICE,") === 0) {
+            header = line.split(",");
+        } else if (header && line.indexOf("D,DISPATCH,PRICE,") === 0) {
+            var cols = line.split(",");
+            var region = cols[header.indexOf("REGIONID")];
+            var intervention = cols[header.indexOf("INTERVENTION")];
+            var rrp = parseFloat(cols[header.indexOf("RRP")]);
+            // Prefer the non-intervention (pricing) run if both exist
+            if (region && !isNaN(rrp) && (intervention === "0" || !(region in regionMap))) {
+                regionMap[region] = rrp;
+            }
+        }
+    }
+    if (!Object.keys(regionMap).length) throw new Error("No DISPATCH PRICE rows in CSV");
+    return regionMap;
 }
 
 function scheduleNextGridPriceFetch() {
@@ -145,24 +219,9 @@ function scheduleNextGridPriceFetch() {
     setTimeout(fetchGridPrices, msToWait);
 }
 
-function renderGridPrices(data) {
+function renderGridPrices(regionMap) {
     var container = document.getElementById("grid-prices-container");
     if (!container) return;
-
-    var summary = data.ELEC_NEM_SUMMARY || [];
-    var pricesList = data.ELEC_NEM_SUMMARY_PRICES || [];
-
-    var regionMap = {};
-    pricesList.forEach(function(item) {
-        if (item.REGIONID) {
-            regionMap[item.REGIONID] = item.RRP;
-        }
-    });
-    summary.forEach(function(item) {
-        if (item.REGIONID && item.PRICE !== undefined) {
-            regionMap[item.REGIONID] = item.PRICE;
-        }
-    });
 
     var regions = [
         { code: "NSW", id: "NSW1" },
